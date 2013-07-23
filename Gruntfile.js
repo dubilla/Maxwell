@@ -163,6 +163,28 @@ module.exports = function (grunt) {
                 }
             }
         },
+        requirejs: {
+            dist: {
+                // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+                options: {
+                    // `name` and `out` is set by grunt-usemin
+                    baseUrl: '<%= yeoman.app %>/scripts',
+                    optimize: 'none',
+                    paths: {
+                        'templates': '../../.tmp/scripts/templates'
+                    },
+                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
+                    // https://github.com/yeoman/grunt-usemin/issues/30
+                    //generateSourceMaps: true,
+                    // required to support SourceMaps
+                    // http://requirejs.org/docs/errors.html#sourcemapcomments
+                    preserveLicenseComments: false,
+                    useStrict: true,
+                    wrap: true
+                    //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                }
+            }
+        },
         useminPrepare: {
             html: '<%= yeoman.app %>/index.html',
             options: {
@@ -261,6 +283,12 @@ module.exports = function (grunt) {
                 src: '<%= yeoman.app %>/scripts/main.js',
                 dest: '.tmp/scripts/combined-scripts.js'
             }
+        },
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['*', 'images/*', 'scripts/*', 'scripts/**/*', 'styles/*']
         }
     });
 
@@ -313,6 +341,10 @@ module.exports = function (grunt) {
         'copy',
         'rev',
         'usemin'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'gh-pages'
     ]);
 
     grunt.registerTask('default', [

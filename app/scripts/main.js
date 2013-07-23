@@ -3,8 +3,6 @@
 
 // Require.js allows us to configure shortcut alias
 require.config({
-    // The shim config allows us to configure dependencies for
-    // scripts that do not call define() to register a module
     shim: {
         underscore: {
             exports: '_'
@@ -20,7 +18,9 @@ require.config({
             exports: 'Chart'
         },
         backboneLocalstorage: {
-            deps: ['backbone'],
+            deps: [
+                'backbone'
+            ],
             exports: 'Store'
         }
     },
@@ -30,7 +30,9 @@ require.config({
         backbone: '../bower_components/backbone/backbone',
         chart: '../bower_components/Chart.js/Chart',
         text: '../bower_components/requirejs-text/text',
-        backboneLocalstorage: '../bower_components/backbone.localStorage/backbone.localStorage'
+        backboneLocalstorage: '../bower_components/backbone.localStorage/backbone.localStorage',
+        'requirejs-text': '../bower_components/requirejs-text/text',
+        Chart: '../bower_components/Chart.js/Chart.min'
     },
     baseUrl: '/scripts'
 });
