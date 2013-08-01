@@ -33,8 +33,7 @@ require.config({
         backboneLocalstorage: '../bower_components/backbone.localStorage/backbone.localStorage',
         'requirejs-text': '../bower_components/requirejs-text/text',
         Chart: '../bower_components/Chart.js/Chart.min'
-    },
-    baseUrl: '/scripts'
+    }
 });
 
 require([

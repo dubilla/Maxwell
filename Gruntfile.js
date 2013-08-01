@@ -53,10 +53,6 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/scripts/templates/*.ejs'
                 ],
                 tasks: ['jst']
-            },
-            neuter: {
-                files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.{js,coffee}'],
-                tasks: ['coffee:dist', 'neuter']
             }
         },
         connect: {
@@ -170,9 +166,11 @@ module.exports = function (grunt) {
                     // `name` and `out` is set by grunt-usemin
                     baseUrl: '<%= yeoman.app %>/scripts',
                     optimize: 'none',
+                    /*
                     paths: {
                         'templates': '../../.tmp/scripts/templates'
                     },
+                    */
                     // TODO: Figure out how to make sourcemaps work with grunt-usemin
                     // https://github.com/yeoman/grunt-usemin/issues/30
                     //generateSourceMaps: true,
@@ -180,7 +178,8 @@ module.exports = function (grunt) {
                     // http://requirejs.org/docs/errors.html#sourcemapcomments
                     preserveLicenseComments: false,
                     useStrict: true,
-                    wrap: true
+                    wrap: true,
+                    inlineText: true
                     //uglify2: {} // https://github.com/mishoo/UglifyJS2
                 }
             }
@@ -260,6 +259,9 @@ module.exports = function (grunt) {
             }
         },
         jst: {
+            options: {
+                amd: true
+            },
             compile: {
                 files: {
                     '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
@@ -276,12 +278,6 @@ module.exports = function (grunt) {
                         '<%= yeoman.dist %>/styles/fonts/*'
                     ]
                 }
-            }
-        },
-        neuter: {
-            app: {
-                src: '<%= yeoman.app %>/scripts/main.js',
-                dest: '.tmp/scripts/combined-scripts.js'
             }
         },
         'gh-pages': {
@@ -306,7 +302,6 @@ module.exports = function (grunt) {
             'coffee:dist',
             'createDefaultTemplate',
             'jst',
-            'neuter:app',
             'compass:server',
             'connect:livereload',
             'open',
@@ -319,7 +314,6 @@ module.exports = function (grunt) {
         'coffee',
         'createDefaultTemplate',
         'jst',
-        'neuter:app',
         'compass',
         'connect:test',
         'mocha'
@@ -332,7 +326,7 @@ module.exports = function (grunt) {
         'jst',
         'compass:dist',
         'useminPrepare',
-        'neuter:app',
+        'requirejs',
         'imagemin',
         'htmlmin',
         'concat',
