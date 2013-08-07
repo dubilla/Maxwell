@@ -284,7 +284,7 @@ module.exports = function (grunt) {
             options: {
                 base: 'dist'
             },
-            src: ['bower_components/**/*', 'images/*', 'scripts/*', 'scripts/**/*', 'styles/*']
+            src: ['*', 'bower_components/**/*', 'images/*', 'scripts/*', 'scripts/**/*', 'styles/*']
         }
     });
 
