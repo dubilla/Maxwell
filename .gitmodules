@@ -1,0 +1,4 @@
+[submodule "gh-pages"]
+path = .grunt/grunt-gh-pages/gh-pages/src
+url = git://github.com/dubilla/MaxWell.git
+branch = gh-pages
