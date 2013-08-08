@@ -47,6 +47,5 @@ require([
     Backbone.history.start();
 
     // Initialize the application 
-    console.log('UNBELIEVABLE!');
     new AppView();
 });
