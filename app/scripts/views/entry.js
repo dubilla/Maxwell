@@ -19,7 +19,8 @@ define([
 		render: function() {
 			// TODO: This cannot be the proper syntax
 			var graphingData = this.model.models[0].createGraphingData(this.model.models[0].attributes.data);
-			this.$el.html(this.template());
+
+			this.$el.addClass('entry').html(this.template());
 			this.loadChart(this.$el, graphingData);
 			return this;
 		}

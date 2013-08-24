@@ -1,13 +1,20 @@
 $iconSpritePath: '/images/glyphicons-halflings.png';
 @import 'sass-bootstrap/lib/bootstrap';
 
-.hero-unit {
+// Where should we move this to
+.hero-unit.sidekick {
+	float: left;
     margin: 50px auto 0 auto;
-    width: 300px;
+    width: 200px;
 }
 
-// Where should we move this to
 .myChart {
 	display: block;
 	margin: 0 auto;
+}
+
+// Entry
+.entry {
+	float: right;
+	margin: 50px 0;
 }
