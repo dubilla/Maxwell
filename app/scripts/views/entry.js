@@ -10,19 +10,25 @@ define([
 
 	var EntryView = Backbone.View.extend({
 		template: _.template(entryTemplate),
+		getChart: function() {
+			return this.chart;
+		},
 		loadChart: function($wrapper, data) {
 			//Get context with jQuery - using jQuery's .get() method.
 			var ctx = $wrapper.find('#myChart').get(0).getContext('2d');
-			//This will get the first returned node in the jQuery collection.
-			new Chart(ctx).Line(data);
+			this.setChart(new Chart(ctx));
+			this.getChart().Line(data);
 		},
 		render: function() {
-			// TODO: This cannot be the proper syntax
-			var graphingData = this.model.models[0].createGraphingData(this.model.models[0].attributes.data);
+			var entryPoints = this.model.get('data'),
+				graphingData = this.model.createGraphingData(entryPoints);
 
 			this.$el.addClass('entry').html(this.template());
 			this.loadChart(this.$el, graphingData);
 			return this;
+		},
+		setChart: function(chart) {
+			this.chart = chart;
 		}
 	});
 

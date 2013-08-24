@@ -21,9 +21,10 @@ define([
 			e.preventDefault();
 			Entries.create(this.newAttributes(e));
 		},
-		loadGraph: function(e, entry) {
+		loadGraph: function(entry) {
 			var view = new EntryView({ model: entry });
-			$('.hero-unit').after(view.render().el);
+			$('.hero-unit').siblings().remove().end()
+				.after(view.render().el);
 		},
 		newAttributes: function(e) {
 			var $target = $(e.target);
